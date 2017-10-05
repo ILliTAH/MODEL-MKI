@@ -3,18 +3,18 @@
 #define L3 2
 #define L4 3
 
-#define M1 4
-#define M2 5
+#define M1 5
+#define M2 4
 #define M3 6
-#define M4 7
-#define M5 8
-#define M6 9
+//#define M4 9
+#define M5 7
+#define M6 8
 
 #define H1 10
-#define H2 11
-#define H3 12
-#define H4 13
-#define H5 A6
+#define H2 9
+#define H3 13
+#define H4 12
+#define H5 11
 
 #define sw1 A3
 #define sw2 A2
@@ -81,9 +81,9 @@ void Mloop() {
   delay(ds);
   digitalWrite(M3, LOW);
 
-  digitalWrite(M4, HIGH);
-  delay(ds);
-  digitalWrite(M4, LOW);
+//  digitalWrite(M4, HIGH);
+//  delay(ds);
+//  digitalWrite(M4, LOW);
 
   digitalWrite(M5, HIGH);
   delay(ds);
@@ -120,11 +120,11 @@ void Hloop() {
   digitalWrite(H3, LOW);
 
 
-  digitalWrite(H4, HIGH);
-  delay(ds);
-  digitalWrite(H4, LOW);
+digitalWrite(H4, HIGH);
+delay(ds);
+digitalWrite(H4, LOW);
 
-  
+
   digitalWrite(H5, HIGH);
   delay(ds);
   digitalWrite(H5, LOW);
@@ -148,19 +148,77 @@ void clearLed() {
   digitalWrite(M1, LOW);
   digitalWrite(M2, LOW);
   digitalWrite(M3, LOW);
-  digitalWrite(M4, LOW);
+//  digitalWrite(M4, LOW);
   digitalWrite(M5, LOW);
   digitalWrite(M6, LOW);
 
   digitalWrite(H1, LOW);
   digitalWrite(H2, LOW);
   digitalWrite(H3, LOW);
-  digitalWrite(H4, LOW);
+digitalWrite(H4, LOW);
   digitalWrite(H5, LOW);
 
   Serial.println("Cleared");
 }
 
+void starter() {
+
+  delay(250);
+  digitalWrite(L1, HIGH);
+  digitalWrite(L2, HIGH);
+  digitalWrite(L3, HIGH);
+  digitalWrite(L4, HIGH);
+
+  delay(450);
+  digitalWrite(M1, HIGH);
+  digitalWrite(M2, HIGH);
+  digitalWrite(M3, HIGH);
+//  digitalWrite(M4, HIGH);
+  digitalWrite(M5, HIGH);
+  digitalWrite(M6, HIGH);
+  delay(450);
+  digitalWrite(H1, HIGH);
+  digitalWrite(H2, HIGH);
+  digitalWrite(H3, HIGH);
+  digitalWrite(H4, HIGH);
+  analogWrite(H5, 255);
+  delay(450);
+
+
+  delay(250);
+  digitalWrite(L1, LOW);
+  delay(250);
+  digitalWrite(L2, LOW);
+  delay(250);
+  digitalWrite(L3, LOW);
+  delay(250);
+  digitalWrite(L4, LOW);
+
+  delay(450);
+  digitalWrite(M1, LOW);
+  delay(250);
+  digitalWrite(M2, LOW);
+  delay(250);
+  digitalWrite(M3, LOW);
+  delay(250);
+//  digitalWrite(M4, LOW);
+  delay(250);
+  digitalWrite(M5, LOW);
+  delay(250);
+  digitalWrite(M6, LOW);
+  delay(450);
+  digitalWrite(H1, LOW);
+  delay(250);
+  digitalWrite(H2, LOW);
+  delay(250);
+  digitalWrite(H3, LOW);
+  delay(250);
+  digitalWrite(H4, LOW);
+  delay(250);
+  digitalWrite(H5, LOW);
+  delay(450);
+
+}
 
 void setupTime() {
   Serial.println("SETUP");
@@ -177,7 +235,7 @@ void setupTime() {
     }
     if (rd1 == HIGH) {
       speedLed = speedLed += 1;
-      
+
 
     }
 
@@ -190,28 +248,28 @@ void setupTime() {
       digitalWrite(H1, HIGH);
       digitalWrite(H2, LOW);
       digitalWrite(H3, LOW);
-      digitalWrite(H4, LOW);
+digitalWrite(H4, LOW);
     }
     if (speedLed == 2) {
       ds = 1000;
       digitalWrite(H1, HIGH);
       digitalWrite(H2, HIGH);
       digitalWrite(H3, LOW);
-      digitalWrite(H4, LOW);
+digitalWrite(H4, LOW);
     }
     if (speedLed == 3) {
       ds = 1500;
       digitalWrite(H1, HIGH);
       digitalWrite(H2, HIGH);
       digitalWrite(H3, HIGH);
-      digitalWrite(H4, LOW);
+digitalWrite(H4, LOW);
     }
- 
 
-if (speedLed > 4) {
-        speedLed = 1;
 
-      }
+    if (speedLed > 4) {
+      speedLed = 1;
+
+    }
 
   }
 
@@ -223,6 +281,8 @@ if (speedLed > 4) {
 
 void setup()
 { Serial.begin(9600);
+
+
   pinMode(sw1, INPUT);
   pinMode(sw2, INPUT);
   pinMode(sw3, INPUT);
@@ -236,7 +296,7 @@ void setup()
   pinMode(M1, OUTPUT);
   pinMode(M2, OUTPUT);
   pinMode(M3, OUTPUT);
-  pinMode(M4, OUTPUT);
+//  pinMode(M4, OUTPUT);
   pinMode(M5, OUTPUT);
   pinMode(M6, OUTPUT);
 
@@ -244,6 +304,12 @@ void setup()
   pinMode(H2, OUTPUT);
   pinMode(H3, OUTPUT);
   pinMode(H4, OUTPUT);
+  pinMode(H5, OUTPUT);
+
+
+  starter();
+
+
 
 
 
